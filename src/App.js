@@ -4,7 +4,8 @@ import { useState } from "react";
 function App() {
 
   const [search, setSearch] = useState("");
-  const cartCount = 6;
+  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
   return (
     <div>
@@ -15,7 +16,7 @@ function App() {
         <div>
           <button>Home</button>
           <button>Restaurants</button>
-          <button>Cart({cartCount})</button>
+          <button>Cart ({cartCount})</button>
         </div>
 
         <input
@@ -31,10 +32,18 @@ function App() {
         <p>Fast Delivery At Your Doorstep 🚀</p>
       </div>
 
+      <div style={{ padding: "20px" }}>
+        <h2>Cart Items</h2>
+
+        {cartItems.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+      </div>
+
       <div className="card-container">
 
         {/* Pizza */}
-        {search === "" || "pizza".includes(search.toLowerCase()) ? (
+        {(search === "" || "pizza".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -45,15 +54,20 @@ function App() {
             <h3>Pizza Hut</h3>
             <p>Cheesy Pizza 🍕</p>
 
-            <button onClick={() => alert("Pizza Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Pizza Hut"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
         {/* Burger */}
-        {search === "" || "burger".includes(search.toLowerCase()) ? (
+        {(search === "" || "burger".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -64,15 +78,20 @@ function App() {
             <h3>Burger King</h3>
             <p>Tasty Burger 🍔</p>
 
-            <button onClick={() => alert("Burger Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Burger King"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
         {/* Pasta */}
-        {search === "" || "pasta".includes(search.toLowerCase()) ? (
+        {(search === "" || "pasta".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -83,15 +102,20 @@ function App() {
             <h3>Italian Pasta</h3>
             <p>Creamy Pasta 🍝</p>
 
-            <button onClick={() => alert("Pasta Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Italian Pasta"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
         {/* Salad */}
-        {search === "" || "salad".includes(search.toLowerCase()) ? (
+        {(search === "" || "salad".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -102,15 +126,20 @@ function App() {
             <h3>Healthy Salad</h3>
             <p>Fresh Veggies 🥗</p>
 
-            <button onClick={() => alert("Salad Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Healthy Salad"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
         {/* Momos */}
-        {search === "" || "momos".includes(search.toLowerCase()) ? (
+        {(search === "" || "momos".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -121,15 +150,20 @@ function App() {
             <h3>Steam Momos</h3>
             <p>Spicy Momos 🥟</p>
 
-            <button onClick={() => alert("Momos Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Steam Momos"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
         {/* Juice */}
-        {search === "" || "juice".includes(search.toLowerCase()) ? (
+        {(search === "" || "juice".includes(search.toLowerCase())) && (
           <div className="card">
 
             <img
@@ -138,14 +172,19 @@ function App() {
             />
 
             <h3>Fresh Juice</h3>
-            <p>Healthy Juice 🥤</p>
+            <p>Healthy Juice 🧃</p>
 
-            <button onClick={() => alert("Juice Added To Cart 🛒")}>
+            <button
+              onClick={() => {
+                setCartCount(cartCount + 1);
+                setCartItems([...cartItems, "Fresh Juice"]);
+              }}
+            >
               Order Now
             </button>
 
           </div>
-        ) : null}
+        )}
 
       </div>
 
