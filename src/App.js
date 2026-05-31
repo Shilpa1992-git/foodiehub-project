@@ -6,6 +6,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   return (
     <div>
@@ -34,13 +35,47 @@ function App() {
 
       <div style={{ padding: "20px" }}>
         <h2>Cart Items</h2>
+        <p>Total Price: ₹{totalPrice}</p>
+        <p>Total Items: {cartCount}</p>
+       {cartItems.length === 0 && (
+  <p>Your Cart is Empty 🛒</p>
+)}
+       {cartItems.map((item, index) => (
+        
+  <div key={index}>
+    <p>{item}</p>                   
+    <button
+      onClick={() => {
+        const updatedItems = cartItems.filter(
+          (_, i) => i !== index
+        );
 
-        {cartItems.map((item, index) => (
-          <p key={index}>{item}</p>
-        ))}
+        setCartItems(updatedItems);
+        setCartCount(cartCount - 1);
+      }}
+    >
+      Remove
+    </button>
+  </div>
+))} 
+<button
+  onClick={() => alert("Order Placed Successfully!")}
+>
+  Checkout
+</button>
+
+<button
+  onClick={() => {
+    setCartItems([]);
+    setCartCount(0);
+    setTotalPrice(0);
+  }}
+>
+  Clear Cart
+</button>
       </div>
-
-      <div className="card-container">
+      <div 
+      className="card-container">
 
         {/* Pizza */}
         {(search === "" || "pizza".includes(search.toLowerCase())) && (
@@ -58,6 +93,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Pizza Hut"]);
+                setTotalPrice(totalPrice + 299);
               }}
             >
               Order Now
@@ -82,6 +118,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Burger King"]);
+                setTotalPrice(totalPrice + 199);
               }}
             >
               Order Now
@@ -106,6 +143,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Italian Pasta"]);
+                setTotalPrice(totalPrice + 249);
               }}
             >
               Order Now
@@ -130,6 +168,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Healthy Salad"]);
+                setTotalPrice(totalPrice + 149);
               }}
             >
               Order Now
@@ -154,6 +193,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Steam Momos"]);
+                setTotalPrice(totalPrice + 129);
               }}
             >
               Order Now
@@ -178,6 +218,7 @@ function App() {
               onClick={() => {
                 setCartCount(cartCount + 1);
                 setCartItems([...cartItems, "Fresh Juice"]);
+                setTotalPrice(totalPrice + 99);
               }}
             >
               Order Now
