@@ -7,6 +7,9 @@ function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
 
   return (
     <div>
@@ -73,7 +76,38 @@ function App() {
 >
   Clear Cart
 </button>
-      </div>
+     <h3>Customer Details</h3>
+<input
+  type="text"
+  placeholder="Enter Name"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+
+<br /><br />
+
+<input
+  type="text"
+  placeholder="Enter Mobile Number"
+  value={mobile}
+  onChange={(e) => setMobile(e.target.value)}
+/>
+
+<br /><br />
+
+<input
+  type="text"
+  placeholder="Enter Address"
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+/>
+<br /><br />
+<button
+  onClick={() => alert("Order Confirmed Successfully!")}
+>
+  Place Order
+</button>
+ </div>
       <div 
       className="card-container">
 
